@@ -17,31 +17,45 @@ function ellenorzo() {
     }
 }
 
-// válaszokra kattintás
-// válasz után inaktívak legyenek a "gombok", de írja ki hogy talált vagy nem
-document.getElementById("megoldas1").addEventListener('click', function(){
-    clearTimeout(test);
-    tipp = document.getElementById('megoldas1').innerHTML;
-    ellenorzo();
-});
+// válaszokra kattintás utana inaktívvá váljanak
+function removeEvent() {
+    document.getElementById("megoldas1").removeEventListener('click', megold1);
+    document.getElementById("megoldas2").removeEventListener('click', megold2);
+    document.getElementById("megoldas3").removeEventListener('click', megold3);
+    document.getElementById("megoldas4").removeEventListener('click', megold4);
+}
 
-document.getElementById("megoldas2").addEventListener('click', function(){
+const megold1 = function megold1() {
     clearTimeout(test);
-    tipp = document.getElementById('megoldas2').innerHTML;
+    tipp = this.innerHTML;
     ellenorzo();
-});
+    removeEvent();
+}
+document.getElementById("megoldas1").addEventListener('click', megold1);
 
-document.getElementById("megoldas3").addEventListener('click', function(){
+const megold2 = function megold2() {
     clearTimeout(test);
-    tipp = document.getElementById('megoldas3').innerHTML;
+    tipp = this.innerHTML;
     ellenorzo();
-});
+    removeEvent()
+}
+document.getElementById("megoldas2").addEventListener('click', megold2);
 
-document.getElementById("megoldas4").addEventListener('click', function(){
+const megold3 = function megold3() {
     clearTimeout(test);
-    tipp = document.getElementById('megoldas4').innerHTML;
+    tipp = this.innerHTML;
     ellenorzo();
-});
+    removeEvent()
+}
+document.getElementById("megoldas3").addEventListener('click', megold3);
+
+const megold4 = function megold4() {
+    clearTimeout(test);
+    tipp = this.innerHTML;
+    ellenorzo();
+    removeEvent()
+}
+document.getElementById("megoldas4").addEventListener('click', megold4);
 
 // lejárati idő?
 ido *= 1000;
@@ -56,11 +70,11 @@ ido *= 1000;
     if(ido >= 0) {
         // test változóba tettem clearTimeouthoz
         test = setTimeout(() => timer(), 1000);
-        // lejárat után inaktívak legyenek a "gombok"
     }
     else {
         document.getElementById("eredmeny").innerHTML = "Sajnos lejárt az időd"
         document.getElementById("eredmeny").style.color = "red";
+        removeEvent()
     }
 
 }());
