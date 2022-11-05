@@ -2,6 +2,8 @@
 // első feladat helyes megfejtése változóba deklarálása
 const elsoFeladat = document.getElementById("megoldas1").innerHTML;
 let tipp;
+let ido = 10;
+let test;
 
 // ellenőrző function hogy jóra vagy rosszra kattintott a felhasználó
 function ellenorzo() {
@@ -18,27 +20,30 @@ function ellenorzo() {
 // válaszokra kattintás
 // válasz után inaktívak legyenek a "gombok", de írja ki hogy talált vagy nem
 document.getElementById("megoldas1").addEventListener('click', function(){
+    clearTimeout(test);
     tipp = document.getElementById('megoldas1').innerHTML;
     ellenorzo();
 });
 
 document.getElementById("megoldas2").addEventListener('click', function(){
+    clearTimeout(test);
     tipp = document.getElementById('megoldas2').innerHTML;
     ellenorzo();
 });
 
 document.getElementById("megoldas3").addEventListener('click', function(){
+    clearTimeout(test);
     tipp = document.getElementById('megoldas3').innerHTML;
     ellenorzo();
 });
 
 document.getElementById("megoldas4").addEventListener('click', function(){
+    clearTimeout(test);
     tipp = document.getElementById('megoldas4').innerHTML;
     ellenorzo();
 });
 
 // lejárati idő?
-let ido = 10;
 ido *= 1000;
 
 (function timer() {
@@ -49,7 +54,8 @@ ido *= 1000;
     ido -= 1000;
     
     if(ido >= 0) {
-        setTimeout(() => timer(), 1000);
+        // test változóba tettem clearTimeouthoz
+        test = setTimeout(() => timer(), 1000);
         // lejárat után inaktívak legyenek a "gombok"
     }
     else {
@@ -58,3 +64,4 @@ ido *= 1000;
     }
 
 }());
+
